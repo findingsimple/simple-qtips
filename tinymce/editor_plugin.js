@@ -17,8 +17,8 @@
 
 			// Register the command so that it can be invoked from the button
 			ed.addCommand('mce_simple_qtips', function() {
-				post_snippets_canvas = ed;
-				post_snippets_caller = 'visual';
+				simple_qtips_canvas = ed;
+				simple_qtips_caller = 'visual';
 				jQuery( "#simple-qtips-dialog" ).dialog( "open" );
 			});
 
@@ -32,9 +32,6 @@
 
 		/**
 		 * Returns information about the plugin as a name/value array.
-		 * The current keys are longname, author, authorurl, infourl and version.
-		 *
-		 * @return {Object} Name/value array containing information about the plugin.
 		 */
 		getInfo : function() {
 			return {
