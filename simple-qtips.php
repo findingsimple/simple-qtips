@@ -71,8 +71,8 @@ class Simple_qTips {
 	 * @since 1.0
 	 */
 	public static function enqueue_styles_and_scripts(){
-		wp_enqueue_script( 'simple-qtips', plugins_url( '/js/jquery.qtip.min.js', fs_get_simple_qtips_plugin_file() ) ,'','',true );
-		wp_enqueue_style( 'simple-qtips', plugins_url( '/css/jquery.qtip.min.css', fs_get_simple_qtips_plugin_file() ) );
+		wp_enqueue_script( 'simple-qtips', plugins_url( '/js/jquery.qtip.min.js', __FILE__ ) ,'','',true );
+		wp_enqueue_style( 'simple-qtips', plugins_url( '/css/jquery.qtip.min.css', __FILE__ ) );
 	}
 
 	/**
