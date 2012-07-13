@@ -53,7 +53,9 @@ class Simple_qTips {
 		);
 
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'enqueue_styles_and_scripts'), 100 );
-
+		
+		add_action( 'wp_footer', array( __CLASS__, 'go_go_qtips'), 100 );
+		
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_admin_styles_and_scripts' ) );
 
 		add_action( 'admin_footer', array( __CLASS__, 'the_jquery_dialog_markup' ) );
@@ -191,6 +193,40 @@ class Simple_qTips {
 	</div><!-- #snippets-dialog -->
 </div><!-- .hidden -->
 <?php
+	}
+	
+	
+	/**
+	 * Go Go qTips!
+	 *
+	 * @since 1.0
+	 */
+	public static function go_go_qtips() {
+	
+	$style = ( get_option('simple_qtips-custom-css-class') ) ? get_option('simple_qtips-custom-css-class') : get_option('simple_qtips-style');
+	$css3_shadow = ( get_option('simple_qtips-toggle-shadow') == 1 ) ? 'ui-tooltip-shadow' : '';
+	$hide = ( get_option('simple_qtips-hide') == 'false' ) ? false : ( get_option('simple_qtips-hide') == null ) ? 'unfocus' : get_option('simple_qtips-hide') ;
+	
+	?>
+<script type="text/javascript">
+jQuery('.entry-content a[title]').qtip({
+	content: {
+		attr: 'title',
+		title: {
+			text: 'Title?',
+			button: 'Close'
+		}
+	},
+	hide: {
+		event: '<?php echo $hide; ?>'
+	},
+	style: {
+		classes: '<?php echo $style . " " . $css3_shadow ; ?>'
+	}
+});
+</script>
+<?php
+	
 	}
 
 }

@@ -26,7 +26,7 @@
 			ed.addButton('simple_qtips', {
 				title : 'simple_qtips.desc',
 				cmd : 'mce_simple_qtips',
-				image : url + '/simple-qtips.gif'
+				image : url + '/simple-qtips.png'
 			});
 		},
 

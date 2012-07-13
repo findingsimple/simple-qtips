@@ -65,7 +65,15 @@ class SIMPLE_QTIPS_Admin {
 			$page,
 			'simple_qtips-general'
 		);
-
+		
+		add_settings_field(
+			'simple_qtips-custom-css-class',
+			'Custom CSS class to apply to qTips',
+			__CLASS__ . '::simple_qtips_custom_css_class_callback',
+			$page,
+			'simple_qtips-general'
+		);
+		
 		add_settings_field(
 			'simple_qtips-toggle-shadow',
 			'Toggle Shadow',
@@ -75,9 +83,9 @@ class SIMPLE_QTIPS_Admin {
 		);
 		
 		add_settings_field(
-			'simple_qtips-custom-css-class',
-			'Custom CSS class to apply to qTips',
-			__CLASS__ . '::simple_qtips_custom_css_class_callback',
+			'simple_qtips-hide',
+			'Hide',
+			__CLASS__ . '::simple_qtips_hide_callback',
 			$page,
 			'simple_qtips-general'
 		);
@@ -111,8 +119,9 @@ class SIMPLE_QTIPS_Admin {
 		
 		register_setting( $page, 'simple_qtips-attribute' );
 		register_setting( $page, 'simple_qtips-style' );
-		register_setting( $page, 'simple_qtips-toggle-shadow' );
 		register_setting( $page, 'simple_qtips-custom-css-class' );
+		register_setting( $page, 'simple_qtips-toggle-shadow' );
+		register_setting( $page, 'simple_qtips-hide' );
 		
 		register_setting( $page, 'simple_qtips-toggle-css-include' );
 		register_setting( $page, 'simple_qtips-toggle-js-include' );
@@ -178,18 +187,36 @@ class SIMPLE_QTIPS_Admin {
 		echo '</select>';
 		
 	}
+
+	public static function simple_qtips_custom_css_class_callback() {
+	
+		echo '<input name="simple_qtips-custom-css-class" type="text" id="simple_qtips-custom-css-class" class="regular-text" value="'. esc_attr( get_option('simple_qtips-custom-css-class') ) . '"  /> Alternatively use a custom css class';
+		
+	}
 	
 	public static function simple_qtips_toggle_shadow_callback() {
 	
 		echo '<input name="simple_qtips-toggle-shadow" id="simple_qtips-toggle-shadow" type="checkbox" value="1" class="code" ' . checked( 1, get_option('simple_qtips-toggle-shadow'), false ) . ' /> Show shadow around tooltip (uses CSS3)';
 		
 	}	
-	
-	public static function simple_qtips_custom_css_class_callback() {
-	
-		echo '<input name="simple_qtips-custom-css-class" type="text" id="simple_qtips-custom-css-class" class="regular-text" value="'. esc_attr( get_option('simple_qtips-custom-css-class') ) . '"  />';
+
+	public static function simple_qtips_hide_callback() {
 		
-	}	
+		$selected = ( get_option('simple_qtips-hide') ) ? esc_attr( get_option('simple_qtips-hide') ) : 'unfocus';
+		
+		echo '<select name="simple_qtips-hide">';
+		
+		foreach ( SIMPLE_QTIPS_Admin::$hide_options as $hide_option )  :
+		
+			echo '<option value="' . $hide_option . '"';
+			 if ( $hide_option == $selected ) echo ' selected="selected"';
+			echo ' >' . $hide_option . '</option>';
+		
+		endforeach;
+		
+		echo '</select>';
+		
+	}
 	
 	// Includes Settings Callbacks
 	
@@ -223,6 +250,15 @@ class SIMPLE_QTIPS_Admin {
 		'ui-tooltip-red',
 		'ui-tooltip-green',
 		'ui-tooltip-blue' 
+  	);
+  	
+	/**
+	 * qTips Hide options
+	 *
+	 */	
+	public static $hide_options = array( 
+		'unfocus',
+		'false'
   	);
 
 
