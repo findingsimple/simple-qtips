@@ -202,7 +202,9 @@ class Simple_qTips {
 	 * @since 1.0
 	 */
 	public static function go_go_qtips() {
-	
+
+	$selector = ( get_option('simple_qtips-selector') ) ? get_option('simple_qtips-selector') : '.tooltip';
+
 	$style = ( get_option('simple_qtips-custom-css-class') ) ? get_option('simple_qtips-custom-css-class') : get_option('simple_qtips-style');
 	$css3_shadow = ( get_option('simple_qtips-toggle-shadow') == 1 ) ? 'ui-tooltip-shadow' : '';
 	$hide = ( get_option('simple_qtips-hide') == 'false' ) ? false : ( get_option('simple_qtips-hide') == null ) ? 'unfocus' : get_option('simple_qtips-hide') ;
@@ -212,11 +214,13 @@ class Simple_qTips {
 
 	?>
 <script type="text/javascript">
-jQuery('.entry-content a[title]').qtip({
+jQuery('<?php echo $selector ;?>').qtip({
 	content: {
-		attr: 'title',
+		attr: 'data-qtip-content',
 		title: {
-			text: 'Title?',
+			text: function(api) {
+				return jQuery(this).attr('title');
+			},
 			button: 'Close'
 		}
 	},

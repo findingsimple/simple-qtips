@@ -51,9 +51,9 @@ class SIMPLE_QTIPS_Admin {
 		);
 		
 		add_settings_field(
-			'simple_qtips-attribute',
-			'Attribute',
-			__CLASS__ . '::simple_qtips_attribute_callback',
+			'simple_qtips-selector',
+			'Selector',
+			__CLASS__ . '::simple_qtips_selector_callback',
 			$page,
 			'simple_qtips-general'
 		);
@@ -142,7 +142,8 @@ class SIMPLE_QTIPS_Admin {
 
 		//register our settings
 		
-		register_setting( $page, 'simple_qtips-attribute' );
+		register_setting( $page, 'simple_qtips-selector' );
+		
 		register_setting( $page, 'simple_qtips-style' );
 		register_setting( $page, 'simple_qtips-custom-css-class' );
 		register_setting( $page, 'simple_qtips-toggle-shadow' );
@@ -192,9 +193,9 @@ class SIMPLE_QTIPS_Admin {
 		
 	}
 	
-	public static function simple_qtips_attribute_callback() {
+	public static function simple_qtips_selector_callback() {
 	
-		echo '<input name="simple_qtips-attribute" type="text" id="simple_qtips-attribute" class="regular-text" value="'. esc_attr( get_option('simple_qtips-attribute') ) . '"  />';
+		echo '<input name="simple_qtips-selector" type="text" id="simple_qtips-selector" class="regular-text" value="'. esc_attr( get_option('simple_qtips-selector') ) . '"  /> CSS selector that indicates to use a qtip';
 		
 	}
 
