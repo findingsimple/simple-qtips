@@ -195,7 +195,9 @@ class SIMPLE_QTIPS_Admin {
 	
 	public static function simple_qtips_selector_callback() {
 	
-		echo '<input name="simple_qtips-selector" type="text" id="simple_qtips-selector" class="regular-text" value="'. esc_attr( get_option('simple_qtips-selector') ) . '"  /> CSS selector that indicates to use a qtip';
+		$selector = ( get_option('simple_qtips-selector') ) ? esc_attr( get_option('simple_qtips-selector') ) : '.tooltip';
+
+		echo '<input name="simple_qtips-selector" type="text" id="simple_qtips-selector" class="regular-text" value="'. $selector . '"  /> CSS selector that indicates to use a qtip.';
 		
 	}
 
