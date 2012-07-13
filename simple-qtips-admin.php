@@ -89,6 +89,31 @@ class SIMPLE_QTIPS_Admin {
 			$page,
 			'simple_qtips-general'
 		);
+		
+		// Position settings
+		
+		add_settings_section( 
+			'simple_qtips-position', 
+			'Position Settings',
+			__CLASS__ . '::simple_qtips_position_callback',
+			$page
+		);
+		
+		add_settings_field(
+			'simple_qtips-my-position',
+			'My position',
+			__CLASS__ . '::simple_qtips_my_position_callback',
+			$page,
+			'simple_qtips-position'
+		);
+		
+		add_settings_field(
+			'simple_qtips-at-position',
+			'At position',
+			__CLASS__ . '::simple_qtips_at_position_callback',
+			$page,
+			'simple_qtips-position'
+		);
 
 		// Includes settings
 		
@@ -123,6 +148,9 @@ class SIMPLE_QTIPS_Admin {
 		register_setting( $page, 'simple_qtips-toggle-shadow' );
 		register_setting( $page, 'simple_qtips-hide' );
 		
+		register_setting( $page, 'simple_qtips-my-position' );
+		register_setting( $page, 'simple_qtips-at-position' );
+
 		register_setting( $page, 'simple_qtips-toggle-css-include' );
 		register_setting( $page, 'simple_qtips-toggle-js-include' );
 
@@ -218,6 +246,50 @@ class SIMPLE_QTIPS_Admin {
 		
 	}
 	
+	// Position Settings Callbacks
+
+	public static function simple_qtips_position_callback() {
+		
+		echo '<p>Set the position of the tooltip. e.g. position MY xxx AT xxx.</p>';
+		
+	}
+
+	public static function simple_qtips_my_position_callback() {
+		
+		$selected = ( get_option('simple_qtips-my-position') ) ? esc_attr( get_option('simple_qtips-my-position') ) : 'top left';
+		
+		echo '<select name="simple_qtips-my-position">';
+		
+		foreach ( SIMPLE_QTIPS_Admin::$positions as $position )  :
+		
+			echo '<option value="' . $position . '"';
+			 if ( $position == $selected ) echo ' selected="selected"';
+			echo ' >' . $position . '</option>';
+		
+		endforeach;
+		
+		echo '</select>';
+		
+	}
+	
+	public static function simple_qtips_at_position_callback() {
+		
+		$selected = ( get_option('simple_qtips-at-position') ) ? esc_attr( get_option('simple_qtips-at-position') ) : 'bottom right';
+		
+		echo '<select name="simple_qtips-at-position">';
+		
+		foreach ( SIMPLE_QTIPS_Admin::$positions as $position )  :
+		
+			echo '<option value="' . $position . '"';
+			 if ( $position == $selected ) echo ' selected="selected"';
+			echo ' >' . $position . '</option>';
+		
+		endforeach;
+		
+		echo '</select>';
+		
+	}
+	
 	// Includes Settings Callbacks
 	
 	public static function simple_qtips_includes_callback() {
@@ -237,6 +309,26 @@ class SIMPLE_QTIPS_Admin {
 		echo '<input name="simple_qtips-toggle-js-include" id="simple_qtips-toggle-js-include" type="checkbox" value="1" class="code" ' . checked( 1, get_option('simple_qtips-toggle-js-include'), false ) . ' /> Do <strong>not</strong> include JS before <code>&lt;/body&gt;</code>';
 		
 	}
+
+	/**
+	 * qTips Position Options
+	 *
+	 */	
+	public static $positions = array( 
+		'top left',
+		'top center',
+		'top right',
+		'right top',
+		'right center',
+		'right bottom',
+		'bottom right',
+		'bottom center',
+		'bottom left',
+		'left bottom',
+		'left center',
+		'left top',
+		'center'
+  	);
 
 	/**
 	 * Default CSS Classes
