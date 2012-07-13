@@ -218,7 +218,7 @@ class SIMPLE_QTIPS_Admin {
 
 	public static function simple_qtips_custom_css_class_callback() {
 	
-		echo '<input name="simple_qtips-custom-css-class" type="text" id="simple_qtips-custom-css-class" class="regular-text" value="'. esc_attr( get_option('simple_qtips-custom-css-class') ) . '"  /> Alternatively use a custom css class';
+		echo '<input name="simple_qtips-custom-css-class" type="text" id="simple_qtips-custom-css-class" class="regular-text" value="'. esc_attr( get_option('simple_qtips-custom-css-class') ) . '"  /> Leave blank to use a style defined above';
 		
 	}
 	
