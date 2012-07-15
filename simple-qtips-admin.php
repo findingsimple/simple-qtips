@@ -197,7 +197,7 @@ class SIMPLE_QTIPS_Admin {
 	
 		$selector = ( get_option('simple_qtips-selector') ) ? esc_attr( get_option('simple_qtips-selector') ) : '.tooltip';
 
-		echo '<input name="simple_qtips-selector" type="text" id="simple_qtips-selector" class="regular-text" value="'. $selector . '"  /> CSS selector that indicates to use a qtip.';
+		echo '<input name="simple_qtips-selector" type="text" id="simple_qtips-selector" class="regular-text" value="'. $selector . '"  /> CSS class (selector) that indicates to use a qtip. Please include the "." at the beginning';
 		
 	}
 

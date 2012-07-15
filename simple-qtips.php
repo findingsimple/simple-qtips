@@ -65,6 +65,8 @@ class Simple_qTips {
 		add_filter( 'mce_external_plugins', array( __CLASS__, 'register_tinymce_plugin' ) );
 
 		add_filter( 'mce_buttons', array( __CLASS__, 'register_tinymce_button' ) );
+		
+		add_shortcode( 'qtip', array( __CLASS__, 'shortcode_qtip') );
 
 	}
 
@@ -239,6 +241,73 @@ jQuery('<?php echo $selector ;?>').qtip({
 <?php
 	
 	}
+
+	/**
+	 * Build qtip shortcode.
+	 *
+	 * @since 1.0
+	 *	
+	 * Required arguments:
+	 *  - link_text 
+	 *  - link_title
+	 *  - link_url
+	 *  - tooltip_text
+	 *
+	 * If required arguments are missin there is no output
+	 *
+	 * @since 1.0
+	 * @author Jason Conroy <jason@findingsimple.com>
+	 * @package SIMPLE-QTIPS
+	 *
+	 */
+	 
+	public static function shortcode_qtip($atts, $content = null) {
+	
+		extract( shortcode_atts( 
+			array(	'link_text' => '',
+					'link_title' => '',
+					'link_url' => '',
+					'tooltip_text' => ''
+			) , $atts)
+		);
+		
+		$content = '';
+		
+		if ( $link_text && $link_title && $link_url && $tooltip_text ) {
+
+			$selector = ( get_option('simple_qtips-selector') ) ? get_option('simple_qtips-selector') : '.tooltip';
+			$selector = trim( $selector, ".");
+			$selector = trim( $selector, "#");
+			
+			$content .= '<a ';
+			$content .= 'href="' . $link_url . '" ';
+			$content .= 'title="' . $link_title . '" ';
+			$content .= 'class="' . $selector . '" ';
+			$content .= 'data-qtip-content="' . $tooltip_text . '" ';
+			$content .= '>';
+			$content .= $link_text;
+			$content .= '</a>';
+		
+		}
+	
+		return self::qtips_remove_wpautop($content);
+	
+	}
+
+	/**
+	 * Replaces WP autop formatting 
+	 *
+	 * @since 1.0
+	 * @author Jason Conroy <jason@findingsimple.com>
+	 * @package SIMPLE-QTIPS
+	 */
+	public static function qtips_remove_wpautop($content) { 
+		$content = do_shortcode( shortcode_unautop( $content ) ); 
+		$content = preg_replace( '#^<\/p>|^<br \/>|<p>$#', '', $content);
+		return $content;
+	}	
+	
+	
 
 }
 
