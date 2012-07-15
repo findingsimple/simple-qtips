@@ -59,8 +59,6 @@ class Simple_qTips {
 
 		add_action( 'admin_footer', array( __CLASS__, 'the_jquery_dialog_markup' ) );
 
-		add_action( 'admin_print_footer_scripts', array( __CLASS__, 'add_quicktag_button' ), 100 );
-
 		add_filter( 'mce_external_plugins', array( __CLASS__, 'register_tinymce_plugin' ) );
 
 		add_filter( 'mce_buttons', array( __CLASS__, 'register_tinymce_button' ) );
@@ -136,32 +134,6 @@ class Simple_qTips {
 		$plugins[self::TINYMCE_PLUGIN_NAME] = plugins_url( '/tinymce/editor_plugin.js?ver=1.0', __FILE__ );
 
 		return $plugins;
-	}
-
-	/**
-	 * Adds a QuickTag button to the HTML editor.
-	 *
-	 * Compatible with WordPress 3.3 and newer.
-	 *
-	 * @see wp-includes/js/quicktags.dev.js -> qt.addButton()
-	 * @since 1.0
-	 */
-	public static function add_quicktag_button() {
-		// Only run the function on post edit screens
-		if ( function_exists( 'get_current_screen' ) ) {
-			$screen = get_current_screen();
-			if ($screen->base != 'post')
-				return;
-		}
-?>
-<script type="text/javascript" charset="utf-8">
-	QTags.addButton( 'simple_qtips_id', 'qTips', qt_simple_qtips );
-	function qt_simple_qtips() {
-		simple_qtips_caller = 'html';
-		jQuery( "#simple-tips-dialog" ).dialog( "open" );
-	}
-</script>
-<?php
 	}
 
 	/**

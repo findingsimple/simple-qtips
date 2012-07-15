@@ -5,14 +5,7 @@
 	tinymce.PluginManager.requireLangPack('simple_qtips');
 	
 	tinymce.create('tinymce.plugins.simple_qtips', {
-		/**
-		 * Initializes the plugin, this will be executed after the plugin has been created.
-		 * This call is done before the editor instance has finished it's initialization so use the onInit event
-		 * of the editor instance to intercept that event.
-		 *
-		 * @param {tinymce.Editor} ed Editor instance that the plugin is initialized in.
-		 * @param {string} url Absolute URL to where the plugin is located.
-		 */
+
 		init : function(ed, url) {
 
 			// Register the command so that it can be invoked from the button
