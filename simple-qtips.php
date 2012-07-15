@@ -48,8 +48,7 @@ class Simple_qTips {
 			'link_text'     => __( 'Link Text' ),
 			'link_title'    => __( 'Link Title' ),
 			'link_url'      => __( 'Link URL' ),
-			'tooltip_title' => __( 'Tooltip Title' ),
-			'tooltip_text'  => __( 'Tooltip Text' ),
+			'tooltip_text'  => __( 'Tooltip Text' )
 		);
 
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'enqueue_styles_and_scripts'), 100 );
