@@ -92,17 +92,24 @@ class Simple_qTips {
 	 * @since 1.0
 	 */
 	public static function enqueue_admin_styles_and_scripts() {
+		
+		global $pagenow;
+		
+		if ( is_admin() && $pagenow == 'post-new.php' || $pagenow == 'post.php' ) {
 
-		wp_enqueue_script( 'jquery-ui-dialog' );
-		wp_enqueue_script( 'jquery-ui-tabs' );
-		wp_enqueue_style( 'wp-jquery-ui-dialog' );
-
-		wp_register_style( 'simple-qtips', plugins_url( '/css/simple-qtips.css', __FILE__ ) , false, '1.0' );
-		wp_enqueue_style( 'simple-qtips' );
-
-		wp_enqueue_script( 'simple-qtips', plugins_url( '/js/qtip-admin.js', __FILE__ ) );
-
-		wp_localize_script( 'simple-qtips', 'qtipFields', self::$tooltip_fields );
+			wp_enqueue_script( 'jquery-ui-dialog' );
+			wp_enqueue_script( 'jquery-ui-tabs' );
+			wp_enqueue_style( 'wp-jquery-ui-dialog' );
+	
+			wp_register_style( 'simple-qtips', plugins_url( '/css/simple-qtips.css', __FILE__ ) , false, '1.0' );
+			wp_enqueue_style( 'simple-qtips' );
+	
+			wp_enqueue_script( 'simple-qtips', plugins_url( '/js/qtip-admin.js', __FILE__ ) );
+	
+			wp_localize_script( 'simple-qtips', 'qtipFields', self::$tooltip_fields );
+		
+		}
+		
 	}
 
 	/**
