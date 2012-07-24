@@ -74,12 +74,16 @@ class Simple_qTips {
 	 */
 	public static function enqueue_styles_and_scripts(){
 		
-		if ( get_option('simple_qtips-toggle-js-include') != 1 )
-			wp_enqueue_script( 'simple-qtips', plugins_url( '/js/jquery.qtip.min.js', __FILE__ ) ,'jquery','2.0',true );
+		if ( !is_admin() ) {
 		
-		if ( get_option('simple_qtips-toggle-css-include') != 1 )
-			wp_enqueue_style( 'simple-qtips', plugins_url( '/css/jquery.qtip.min.css', __FILE__ ) );
-	
+			if ( get_option('simple_qtips-toggle-js-include') != 1 )
+				wp_enqueue_script( 'simple-qtips', plugins_url( '/js/jquery.qtip.min.js', __FILE__ ) ,'jquery','2.0',true );
+			
+			if ( get_option('simple_qtips-toggle-css-include') != 1 )
+				wp_enqueue_style( 'simple-qtips', plugins_url( '/css/jquery.qtip.min.css', __FILE__ ) );
+		
+		}
+		
 	}
 
 	/**
