@@ -31,6 +31,20 @@ require_once dirname( __FILE__ ) . '/simple-qtips-admin.php';
 if ( ! class_exists( 'Simple_qTips' ) ) :
 
 /**
+ * So that themes and other plugins can customise the text domain, the Simple_qTips
+ * should not be initialized until after the plugins_loaded and after_setup_theme hooks.
+ * However, it also needs to run early on the init hook.
+ *
+ * @author Jason Conroy <jason@findingsimple.com>
+ * @package Simple qTips
+ * @since 1.0
+ */
+function initialize_qtips(){
+	Simple_qTips::init();
+}
+add_action( 'init', 'initialize_qtips', -1 );
+
+/**
  * Plugin Main Class.
  *
  * @package Simple qTips
@@ -299,7 +313,5 @@ jQuery('<?php echo $selector ;?>').qtip({
 	
 
 }
-
-Simple_qTips::init();
 
 endif;
