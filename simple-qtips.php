@@ -91,10 +91,10 @@ class Simple_qTips {
 		if ( !is_admin() ) {
 		
 			if ( get_option('simple_qtips-toggle-js-include') != 1 )
-				wp_enqueue_script( 'simple-qtips', plugins_url( '/js/jquery.qtip.min.js', __FILE__ ) ,'jquery','2.0',true );
+				wp_enqueue_script( 'simple-qtips', get_url( '/js/jquery.qtip.min.js', __FILE__ ) ,'jquery','2.0',true );
 			
 			if ( get_option('simple_qtips-toggle-css-include') != 1 )
-				wp_enqueue_style( 'simple-qtips', plugins_url( '/css/jquery.qtip.min.css', __FILE__ ) );
+				wp_enqueue_style( 'simple-qtips', get_url( '/css/jquery.qtip.min.css', __FILE__ ) );
 		
 		}
 		
@@ -115,10 +115,10 @@ class Simple_qTips {
 			wp_enqueue_script( 'jquery-ui-tabs' );
 			wp_enqueue_style( 'wp-jquery-ui-dialog' );
 	
-			wp_register_style( 'simple-qtips', plugins_url( '/css/simple-qtips.css', __FILE__ ) , false, '1.0' );
+			wp_register_style( 'simple-qtips', get_url( '/css/simple-qtips.css', __FILE__ ) , false, '1.0' );
 			wp_enqueue_style( 'simple-qtips' );
 	
-			wp_enqueue_script( 'simple-qtips', plugins_url( '/js/qtip-admin.js', __FILE__ ) );
+			wp_enqueue_script( 'simple-qtips', get_url( '/js/qtip-admin.js', __FILE__ ) );
 	
 			wp_localize_script( 'simple-qtips', 'qtipFields', self::$tooltip_fields );
 		
@@ -156,7 +156,7 @@ class Simple_qTips {
 	 */
 	public static function register_tinymce_plugin( $plugins ) {
 
-		$plugins[self::TINYMCE_PLUGIN_NAME] = plugins_url( '/tinymce/editor_plugin.js?ver=1.0', __FILE__ );
+		$plugins[self::TINYMCE_PLUGIN_NAME] = get_url( '/tinymce/editor_plugin.js?ver=1.0', __FILE__ );
 
 		return $plugins;
 	}
@@ -308,6 +308,24 @@ jQuery('<?php echo $selector ;?>').qtip({
 		$content = do_shortcode( shortcode_unautop( $content ) ); 
 		$content = preg_replace( '#^<\/p>|^<br \/>|<p>$#', '', $content);
 		return $content;
+	}
+	
+	/**
+	 * Helper function to get the URL of a given file. 
+	 * 
+	 * As this plugin may be used as both a stand-alone plugin and as a submodule of 
+	 * a theme, the standard WP API functions, like plugins_url() can not be used. 
+	 *
+	 * @since 1.0
+	 * @return array $post_name => $post_content
+	 */
+	public static function get_url( $file ) {
+
+		// Get the path of this file after the WP content directory
+		$post_content_path = substr( dirname( __FILE__ ), strpos( __FILE__, basename( WP_CONTENT_DIR ) ) + strlen( basename( WP_CONTENT_DIR ) ) );
+
+		// Return a content URL for this path & the specified file
+		return content_url( $post_content_path . $file );
 	}	
 	
 }
