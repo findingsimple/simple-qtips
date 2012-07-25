@@ -167,10 +167,17 @@ class Simple_qTips {
 		<div id="qtip-details" style="margin: 1em;">
 
 		<?php foreach ( self::$tooltip_fields as $field_id => $field_label ) : ?>
+		<?php if ( $field_id != 'tooltip_text' ) { ?>
 		<label for="qtip-<?php echo $field_id; ?>" style="display: inline-block; width: 90%; margin: 2px;">
 			<?php echo $field_label; ?>
 			<input type="text" id="qtip-<?php echo $field_id; ?>" name="qtip-<?php echo $field_id; ?>" value=""  style="width: 75%; float: right;"/>
 		</label>
+		<?php } else { ?>
+		<label for="qtip-<?php echo $field_id; ?>" style="display: inline-block; width: 90%; margin: 2px;">
+			<?php echo $field_label; ?>
+			<textarea id="qtip-<?php echo $field_id; ?>" name="qtip-<?php echo $field_id; ?>" style="width: 75%; float: right;"></textarea>
+		</label>		
+		<?php } ?>
 		<?php endforeach; ?>
 
 		</div><!-- #snippets-tabs -->
