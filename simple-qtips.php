@@ -310,8 +310,6 @@ jQuery('<?php echo $selector ;?>').qtip({
 		return $content;
 	}	
 	
-	
-
 }
 
 endif;
