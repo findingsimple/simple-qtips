@@ -101,7 +101,7 @@ class Simple_qTips {
 	}
 
 	/**
-	 * Enqueues the necessary scripts and styles for the plugins
+	 * Enqueues the necessary admin scripts and styles
 	 *
 	 * @since 1.0
 	 */
@@ -164,7 +164,7 @@ class Simple_qTips {
 	/**
 	 * Build jQuery UI Window.
 	 *
-	 * Creates the jQuery for Post Editor popup window, its snippet tabs and the
+	 * Creates the jQuery for Post Editor popup window and the
 	 * form fields to enter variables.
 	 *
 	 * @since 1.0
@@ -194,8 +194,8 @@ class Simple_qTips {
 		<?php } ?>
 		<?php endforeach; ?>
 
-		</div><!-- #snippets-tabs -->
-	</div><!-- #snippets-dialog -->
+		</div><!-- #qtip-details -->
+	</div><!-- #simple-qtips-dialog -->
 </div><!-- .hidden -->
 <?php
 	}
