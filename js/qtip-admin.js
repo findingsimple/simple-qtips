@@ -17,7 +17,7 @@ jQuery(document).ready(function($){
 					$.each(qtipFields,function(id,label){
 						if($('#qtip-'+id).val().length != 0){
 							qTipToInsert += ' '+id+'="'+$('#qtip-'+id).val()+'"';
-							$('#qtip-'+id).val('')
+							$('#qtip-'+id).val('');
 						}
 					});
 
