@@ -35,11 +35,12 @@ jQuery(document).ready(function($){
 		});
 	});
 	
-	QTags.addButton('simple_qtips_id','qtip',function(){
-		simple_qtips_caller = 'html';
-		jQuery('#simple-qtips-dialog').dialog('open');
-	});	
-	
+	if ( typeof QTags != 'undefined' ) {
+		QTags.addButton('simple_qtips_id','qtip',function(){
+			simple_qtips_caller = 'html';
+			jQuery('#simple-qtips-dialog').dialog('open');
+		});	
+	}	
 });
 
 // Global variables to keep track on the canvas instance and from what editor
