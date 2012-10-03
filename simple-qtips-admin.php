@@ -125,7 +125,7 @@ class SIMPLE_QTIPS_Admin {
 		);
 		
 		add_settings_field(
-			'simple_agls-toggle-css-include',
+			'simple_qtips-toggle-css-include',
 			'Toggle CSS enqueue in Head',
 			__CLASS__ . '::simple_qtips_toggle_css_include_callback',
 			$page,
@@ -133,8 +133,8 @@ class SIMPLE_QTIPS_Admin {
 		);
 		
 		add_settings_field(
-			'simple_agls-toggle-js-include',
-			'Toggle JS enqueue in Head',
+			'simple_qtips-toggle-js-include',
+			'Toggle JS enqueue in Footer',
 			__CLASS__ . '::simple_qtips_toggle_js_include_callback',
 			$page,
 			'simple_qtips-includes'
