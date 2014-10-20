@@ -330,7 +330,7 @@ class SIMPLE_QTIPS_Admin {
 		'left center',
 		'left top',
 		'center'
-  	);
+	);
 
 	/**
 	 * Default CSS Classes
@@ -344,8 +344,8 @@ class SIMPLE_QTIPS_Admin {
 		'ui-tooltip-red',
 		'ui-tooltip-green',
 		'ui-tooltip-blue' 
-  	);
-  	
+	);
+	
 	/**
 	 * qTips Hide options
 	 *
@@ -353,7 +353,7 @@ class SIMPLE_QTIPS_Admin {
 	public static $hide_options = array( 
 		'unfocus',
 		'false'
-  	);
+	);
 
 
 }
