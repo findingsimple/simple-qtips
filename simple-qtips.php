@@ -4,7 +4,7 @@ Plugin Name: Simple qTips
 Plugin URI: http://plugins.findingsimple.com
 Description: Easily insert qTips.
 Version: 1.0
-Author: Finding Simple (Jason Conroy & Brent Shepherd)
+Author: Finding Simple
 Author URI: http://findingsimple.com
 License: GPL2
 */
@@ -35,7 +35,6 @@ if ( ! class_exists( 'Simple_qTips' ) ) :
  * should not be initialized until after the plugins_loaded and after_setup_theme hooks.
  * However, it also needs to run early on the init hook.
  *
- * @author Jason Conroy <jason@findingsimple.com>
  * @package Simple qTips
  * @since 1.0
  */
@@ -259,7 +258,6 @@ jQuery('<?php echo $selector ;?>').qtip({
 	 * If required arguments are missin there is no output
 	 *
 	 * @since 1.0
-	 * @author Jason Conroy <jason@findingsimple.com>
 	 * @package SIMPLE-QTIPS
 	 *
 	 */
@@ -301,7 +299,6 @@ jQuery('<?php echo $selector ;?>').qtip({
 	 * Replaces WP autop formatting 
 	 *
 	 * @since 1.0
-	 * @author Jason Conroy <jason@findingsimple.com>
 	 * @package SIMPLE-QTIPS
 	 */
 	public static function qtips_remove_wpautop($content) { 
